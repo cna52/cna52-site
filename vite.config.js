@@ -7,5 +7,5 @@ export default defineConfig({
   build: {
     outDir: 'dist', // Default output directory
   },
-  base: '/cna52-site/',
+  base: '/cna52-site',
 })

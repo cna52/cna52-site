@@ -1,35 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React, {useEffect} from 'react'
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import './App.css'
+import NavagationBar from './assets/components/NavagationBar';
+import Home from './assets/components/Home';
+import Portfolio from './assets/components/Portfolio';
+import Contact from './assets/components/Contact';
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+      <Router>
+        <NavagationBar />
+        <Routes>
+          {/* <Route path="/" element={<Home />} />
+          <Route path="/portfolio" element={<Portfolio />}/>
+          <Route path="/contact" element={<Contact />}/> */}
+          <Route path="/" element={<ScrollToSection id="home"><Home /></ScrollToSection>} />
+          <Route path="/portfolio" element={<ScrollToSection id="portfolio"><Portfolio /></ScrollToSection>} />
+          <Route path="/contact" element={<ScrollToSection id="contact"><Contact /></ScrollToSection>} />
+        </Routes>
+    </Router>
+
+    
+    <div id="home">
+        <Home />
+    </div>
+    <div id="portfolio">
+        <Portfolio />
+    </div>
+    <div id="contact">
+        <Contact />
+    </div>
+  </>
   )
+}
+
+function ScrollToSection({ id, children }) {
+  const location = useLocation();
+
+  useEffect(() => {
+    // Scroll to the section smoothly when the route changes
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [location, id]);
+
+  return <div id={id}>{children}</div>;
 }
 
 export default App

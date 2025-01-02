@@ -1,0 +1,25 @@
+ 
+ .custom-nav-link {
+    color: black !important;
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: 50%; /* Makes it circular */
+    /* background-color: aqua; */
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .custom-nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1); /* Slight zoom on hover */
+  }
+
+  .portfolio-cards{
+    background-color: beige;
+  }
+
+  .portfolio-cards:hover {
+    background-color: aliceblue;
+    transform: scale(1.05); 
+  }
+
+
